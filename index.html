@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pembagian Kelompok Matakuliah INTECH 23 A</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <img src="https://www.unimor.ac.id/wp-content/uploads/2022/06/LOGO-WARNA-copy-284x300-1.png" alt="Logo" class="logo">
+    <div class="container">
+        <h1>GROUP WORK DIVISION SYSTEM INTECH 23 A</h1>
+        <i>TIDAK BOLEH DI ULANGI DARI 1X!!!</i>
+        <form id="groupForm">
+            <div class="mb-3">
+                <label for="subject" class="form-label">Nama Matakuliah</label>
+                <input type="text" class="form-control" id="subject" name="subject" required>
+            </div>
+            <div class="mb-3">
+                <label for="groupCount" class="form-label">Jumlah Kelompok</label>
+                <input type="number" class="form-control" id="groupCount" name="groupCount" required>
+            </div>
+            <button type="submit" class="btn" id="submitBtn">Bagi Kelompok</button>
+        </form>
+        <p id="resetInfo" style="color: red; font-weight: bold;"></p>
+        <div id="result" class="mt-5">
+            <h3>Hasil Pembagian Kelompok</h3>
+            <button id="downloadPdf" class="btn mb-3" style="display: none;">Download PDF</button>
+            <div id="groups"></div>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2025 Pembagian Kelompok Matakuliah INTECH 23 A</p>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
