@@ -10,13 +10,53 @@ const students = [
     { name: 'RIO ASER', npm: '210009' },
     { name: 'ANJELI PERMATA', npm: '210010' }
 ];
+
 let savedGroups = JSON.parse(localStorage.getItem('savedGroups')) || {};
+
 function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [array[i], array[j]] = [array[j], array[i]];
     }
 }
+
+function updateResetTime() {
+    const resetTime = new Date(Date.now() + 10 * 60 * 1000);
+    const formattedTime = resetTime.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' });
+    $("#resetInfo").text(`Data akan direset pada: ${formattedTime}`);
+}
+
+async function generatePDF() {
+    const { jsPDF } = window.jspdf;
+    const pdf = new jsPDF();
+    const subject = $("#subject").val();
+    pdf.setFontSize(20);
+    pdf.text(`Universitas Timor (Teknologi Informasi)`, 105, 20, { align: "center" });
+    pdf.setFontSize(16);
+    pdf.text(`Hasil Pembagian Kelompok INTECH 23 A`, 105, 30, { align: "center" });
+    pdf.setFontSize(14);
+    pdf.text(`Matakuliah: ${subject}`, 105, 40, { align: "center" });
+    pdf.setFontSize(12);
+    pdf.text(`_________________________________________________________________________________`, 105, 40, { align: "center" });
+    pdf.setFontSize(10);
+    pdf.text(`"MASA DEPAN ADA DIDIRIMU"`, 105, 50, { align: "center" });
+    pdf.setFontSize(8);
+    const groups = $("#groups .card");
+    let yOffset = 60;
+    groups.each(function (index) {
+        pdf.setFontSize(14);
+        pdf.text(`Kelompok ${index + 1}`, 10, yOffset);
+        yOffset += 10;
+        $(this).find("li").each(function () {
+            pdf.setFontSize(12);
+            pdf.text($(this).text(), 15, yOffset);
+            yOffset += 10;
+        });
+        yOffset += 10;
+    });
+    pdf.save(`pembagian_kelompok_${subject}.pdf`);
+}
+
 function displayGroups(groups) {
     const resultDiv = $("#groups");
     resultDiv.empty();
@@ -34,25 +74,50 @@ function displayGroups(groups) {
     });
     $("#downloadPdf").show();
 }
-function generatePDF() {
-    const { jsPDF } = window.jspdf;
-    const pdf = new jsPDF();
+
+$("#groupForm").on("submit", function (event) {
+    event.preventDefault();
     const subject = $("#subject").val();
-    pdf.text(`Hasil Pembagian Kelompok ${subject}`, 10, 10);
-    $("#groups .card").each(function (index) {
-        pdf.text(`Kelompok ${index + 1}`, 10, 20 + index * 10);
-    });
-    pdf.save("groups.pdf");
-}
-$("#groupForm").on("submit", function (e) {
-    e.preventDefault();
-    const subject = $("#subject").val();
-    const groupCount = $("#groupCount").val();
+    const groupCount = parseInt($("#groupCount").val());
+    if (groupCount <= 0 || groupCount > students.length) {
+        alert("Jumlah kelompok tidak valid!");
+        return;
+    }
+    if (savedGroups[subject]) {
+        displayGroups(savedGroups[subject]);
+        alert("Kelompok sudah ada sebelumnya, tidak diacak ulang.");
+        return;
+    }
     shuffleArray(students);
     const groups = Array.from({ length: groupCount }, () => []);
-    students.forEach((student, index) => groups[index % groupCount].push(student));
+    students.forEach((student, index) => {
+        groups[index % groupCount].push(student);
+    });
     savedGroups[subject] = groups;
     localStorage.setItem('savedGroups', JSON.stringify(savedGroups));
     displayGroups(groups);
+    const submitBtn = $("#submitBtn");
+    submitBtn.prop("disabled", true);
+    setTimeout(() => {
+        submitBtn.prop("disabled", false);
+        $("#subject").val('');
+        $("#groupCount").val('');
+        $("#groups").empty();
+        $("#downloadPdf").hide();
+    }, 15 * 60 * 1000);
 });
+
 $("#downloadPdf").on("click", generatePDF);
+
+setInterval(() => {
+    savedGroups = {};
+    localStorage.removeItem('savedGroups');
+    $("#groups").empty();
+    $("#downloadPdf").hide();
+    alert("Pembagian kelompok telah direset otomatis setelah 10 menit.");
+    updateResetTime();
+}, 10 * 60 * 1000);
+
+$(document).ready(function () {
+    updateResetTime();
+});
