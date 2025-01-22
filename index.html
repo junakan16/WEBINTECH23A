@@ -131,7 +131,7 @@
     <footer>
         <p>&copy; 2025 Pembagian Kelompok Matakuliah INTECH 23 A</p>
     </footer>
-    <script>
+<script>
         const students = [
             { name: 'Fransiskus J. Khan', npm: '51230001' },
             { name: 'Adelia Mutiara', npm: '51230004' },
@@ -152,33 +152,24 @@
             }
         }
         function updateResetTime() {
-            const resetTime = new Date(Date.now() + 10 * 60 * 1000);
+            const resetTime = new Date(Date.now() + 10 * 60 * 60 * 1000); // 10 jam
             const formattedTime = resetTime.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' });
             $("#resetInfo").text(`Data akan direset pada: ${formattedTime}`);
         }
-        async function generatePDF() {
+        function generatePDF() {
             const { jsPDF } = window.jspdf;
             const pdf = new jsPDF();
             const subject = $("#subject").val();
             pdf.setFontSize(20);
             pdf.text(`Universitas Timor (Teknologi Informasi)`, 105, 20, { align: "center" });
-            pdf.setFontSize(16);
             pdf.text(`Hasil Pembagian Kelompok INTECH 23 A`, 105, 30, { align: "center" });
-            pdf.setFontSize(14);
             pdf.text(`Matakuliah: ${subject}`, 105, 40, { align: "center" });
-            pdf.setFontSize(12);
-            pdf.text(`_________________________________________________________________________________`, 105, 40, { align: "center" });
-            pdf.setFontSize(10);
-            pdf.text(`"Masa Depanmu adalah Hasil dari Usahamu"`, 105, 50, { align: "center" });
-            pdf.setFontSize(8);
             const groups = $("#groups .card");
-            let yOffset = 60;
+            let yOffset = 50;
             groups.each(function (index) {
-                pdf.setFontSize(14);
                 pdf.text(`Kelompok ${index + 1}`, 10, yOffset);
                 yOffset += 10;
                 $(this).find("li").each(function () {
-                    pdf.setFontSize(12);
                     pdf.text($(this).text(), 15, yOffset);
                     yOffset += 10;
                 });
@@ -224,15 +215,6 @@
             savedGroups[subject] = groups;
             localStorage.setItem('savedGroups', JSON.stringify(savedGroups));
             displayGroups(groups);
-            const submitBtn = $("#submitBtn");
-            submitBtn.prop("disabled", true);
-            setTimeout(() => {
-                submitBtn.prop("disabled", false);
-                $("#subject").val('');
-                $("#groupCount").val('');
-                $("#groups").empty();
-                $("#downloadPdf").hide();
-            }, 15 * 60 * 1000);
         });
         $("#downloadPdf").on("click", generatePDF);
         setInterval(() => {
@@ -240,12 +222,10 @@
             localStorage.removeItem('savedGroups');
             $("#groups").empty();
             $("#downloadPdf").hide();
-            alert("Pembagian kelompok telah direset otomatis setelah 10 menit.");
+            alert("Pembagian kelompok telah direset otomatis setelah 10 jam.");
             updateResetTime();
-        }, 10 * 60 * 1000);
-        $(document).ready(function () {
-            updateResetTime();
-        });
+        }, 10 * 60 * 60 * 1000); // 10 jam
+        $(document).ready(updateResetTime);
     </script>
 </body>
 </html>
