@@ -9,7 +9,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
     <style>
         body {
-            background-image: url('https://rakyatntt.com/wp-content/uploads/2024/02/unimor-kefa.jpg');
+            background-image: url('https://www.unimor.ac.id/wp-content/uploads/2022/06/DSC_2245-scaled.jpg');
             background-size: cover;
             background-attachment: fixed;
             color: #14747a;
@@ -109,7 +109,8 @@
     <img src="https://www.unimor.ac.id/wp-content/uploads/2022/06/LOGO-WARNA-copy-284x300-1.png" alt="Logo" class="logo">
     <div class="container">
         <h1>GROUP WORK DIVISION SYSTEM INTECH 23 A</h1>
-        <i>TIDAK BOLEH DI ULANGI DARI 1X!!!</i>
+        <i>TIDAK BOLEH DI ULANGI DARI 1X!!!</i><br>
+        <i>PENULISAN MATAKULIAH HARUS HURUF KAPITAL SEMUA!!!</i>
         <form id="groupForm">
             <div class="mb-3">
                 <label for="subject" class="form-label">Nama Matakuliah</label>
@@ -132,18 +133,38 @@
         <p>&copy; 2025 Pembagian Kelompok Matakuliah INTECH 23 A</p>
     </footer>
 <script>
-        const students = [
-            { name: 'Fransiskus J. Khan', npm: '51230001' },
-            { name: 'Adelia Mutiara', npm: '51230004' },
-            { name: 'Kristiani Timo', npm: '210003' },
-            { name: 'EPRY NUBON', npm: '210004' },
-            { name: 'RINTO', npm: '210005' },
-            { name: 'EPANG JAMPI', npm: '210006' },
-            { name: 'BELA LESTARI', npm: '210007' },
-            { name: 'HERY HATUMALE', npm: '210008' },
-            { name: 'RIO ASER', npm: '210009' },
-            { name: 'ANJELI PERMATA', npm: '210010' }
-        ];
+    const students = [
+        { name: 'Maria Aplonia Usnaat', npm: '51230018' },
+        { name: 'Fransiskus Juna Khan', npm: '51230001' },
+        { name: 'Astriana Bria', npm: '51230017' },
+        { name: 'Oktaviana Taimenas', npm: '51230030' },
+        { name: 'Fridolinus Mali', npm: '51230094' },
+        { name: 'Adelia Mutiara', npm: '51230004' },
+        { name: 'Antonius D. Kolo', npm: '51230013' },
+        { name: 'Arni Luruk', npm: '51230020' },
+        { name: 'Mina Delpina Nauf', npm: '51230029' },
+        { name: 'Krisna M.D Timo', npm: '51230007' },
+        { name: 'Mariani Hoar', npm: '51230016' },
+        { name: 'Patrisius omenu', npm: '51230028' },
+        { name: 'Ignasius Bota', npm: '51230034' },
+        { name: 'Agustina Astika Seran', npm: '51230008' },
+        { name: 'Elfira Lidya Taolin', npm: '51230014' },
+        { name: 'Adriani Lovisia Bere', npm: '51230026' },
+        { name: 'Adrianus Sanaunu Ciompah', npm: '51230033' },
+        { name: 'Christina Kolo', npm: '51230009' },
+        { name: 'Benediktus Loin', npm: '51230015' },
+        { name: 'Apriliana Boikletes', npm: '51230021' },
+        { name: 'Fridolin Alisa Kosat', npm: '51230032' },
+        { name: 'Yosefa Funan', npm: '51230010' },
+        { name: 'Maria Bimolo', npm: '51230019' },
+        { name: 'Hendrikus Hatu Male', npm: '51230024' },
+        { name: 'Stenly Taek', npm: '51230011' },
+        { name: 'Liberata Bakhita Soares', npm: '51230027' },
+        { name: 'Richaldus Sanae', npm: '51230012' },
+        { name: 'Anita Kolo', npm: '51230031' },
+        { name: 'Alexandro Mario Aser', npm: '51230035' }
+    ];
+
         let savedGroups = JSON.parse(localStorage.getItem('savedGroups')) || {};
         function shuffleArray(array) {
             for (let i = array.length - 1; i > 0; i--) {
@@ -157,26 +178,40 @@
             $("#resetInfo").text(`Data akan direset pada: ${formattedTime}`);
         }
         function generatePDF() {
-            const { jsPDF } = window.jspdf;
-            const pdf = new jsPDF();
-            const subject = $("#subject").val();
-            pdf.setFontSize(20);
-            pdf.text(`Universitas Timor (Teknologi Informasi)`, 105, 20, { align: "center" });
-            pdf.text(`Hasil Pembagian Kelompok INTECH 23 A`, 105, 30, { align: "center" });
-            pdf.text(`Matakuliah: ${subject}`, 105, 40, { align: "center" });
-            const groups = $("#groups .card");
-            let yOffset = 50;
-            groups.each(function (index) {
-                pdf.text(`Kelompok ${index + 1}`, 10, yOffset);
-                yOffset += 10;
-                $(this).find("li").each(function () {
-                    pdf.text($(this).text(), 15, yOffset);
-                    yOffset += 10;
-                });
-                yOffset += 10;
+        const { jsPDF } = window.jspdf;
+        const pdf = new jsPDF();
+        const subject = $("#subject").val();
+        pdf.setFontSize(16);
+        pdf.text(`Universitas Timor (Teknologi Informasi)`, 105, 20, { align: "center" });
+        pdf.text(`Hasil Pembagian Kelompok INTECH 23 A`, 105, 30, { align: "center" });
+        pdf.text(`Matakuliah: ${subject}`, 105, 40, { align: "center" });
+        
+        pdf.setFontSize(12);
+        pdf.setFont("times", "italic");
+        pdf.text(`"Bersama Kita Bisa, Sukses Tidak Sendirian"`, 105, 50, { align: "center" });
+        pdf.setFont("helvetica", "normal");
+        
+        let yOffset = 60;
+        let pageHeight = pdf.internal.pageSize.height;
+        const lineHeight = 10;
+        
+        const groups = $("#groups .card");
+        groups.each(function (index) {
+            if (yOffset + lineHeight * ($(this).find("li").length + 2) > pageHeight - 20) {
+                pdf.addPage();
+                yOffset = 20;
+            }
+            pdf.text(`Kelompok ${index + 1}`, 10, yOffset);
+            yOffset += lineHeight;
+            $(this).find("li").each(function () {
+                pdf.text($(this).text(), 15, yOffset);
+                yOffset += lineHeight;
             });
-            pdf.save(`pembagian_kelompok_${subject}.pdf`);
-        }
+            yOffset += lineHeight;
+        });
+        
+        pdf.save(`pembagian_kelompok_${subject}.pdf`);
+    }
         function displayGroups(groups) {
             const resultDiv = $("#groups");
             resultDiv.empty();
