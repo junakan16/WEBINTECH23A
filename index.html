@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>INTECH 23 A</title>
+    <title>Pembagian Kelompok Matakuliah INTECH 23 A</title>
+    <link rel="icon" href="https://www.unimor.ac.id/wp-content/uploads/2022/06/LOGO-WARNA-copy-284x300-1.png" type="image/png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
@@ -98,7 +99,7 @@
             background: rgb(255, 255, 255);
             border-radius: 15px;
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
-            transition: transform 0.3s ease;
+            transition : transform 0.3s ease;
             padding: 15px;
         }
 
@@ -205,7 +206,7 @@
             { name: 'Antonius D. Kolo', npm: '51230013' },
             { name: 'Arni Luruk', npm: '51230020' },
             { name: 'Mina Delpina Nauf', npm: '51230029' },
-            { name: ' Krisna M.D Timo', npm: '51230007' },
+            { name: 'Krisna M.D Timo', npm: '51230007' },
             { name: 'Mariani Hoar', npm: '51230016' },
             { name: 'Patrisius omenu', npm: '51230028' },
             { name: 'Ignasius Bota', npm: '51230034' },
@@ -293,7 +294,7 @@
 
         document.getElementById("groupForm").addEventListener("submit", function(event) {
             event.preventDefault();
-            const subject = document.getElementById("subject").value.toUpperCase();
+            const subject = document.getElementById ("subject").value.toUpperCase();
             if (checkResetTime(subject)) return;
 
             const groupCount = parseInt(document.getElementById("groupCount").value);
