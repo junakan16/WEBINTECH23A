@@ -9,7 +9,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
     <style>
-        /* Gaya Dasar */
         body {
             background-image: url('https://www.unimor.ac.id/wp-content/uploads/2022/06/DSC_2245-scaled.jpg');
             background-size: cover;
@@ -19,47 +18,40 @@
             font-family: 'Poppins', sans-serif;
             text-shadow: 1px 2px 4px rgba(0, 0, 0, 0.7);
             display: flex;
+            flex-direction: column; /* Changed to column layout */
             justify-content: center;
             align-items: center;
             min-height: 100vh;
             padding: 20px;
         }
 
-        /* Container Utama */
         .container {
             max-width: 800px;
             padding: 30px;
-            background: rgba(20, 20, 20, 0.8);
+            background: rgba(20, 20, 20, 0.9);
             backdrop-filter: blur(15px);
             border-radius: 15px;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            flex: 1; /* Allow the container to grow and fill space */
         }
 
-        .container:hover {
-            transform: scale(1.02);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
-        }
-
-        /* Judul */
         h1 {
             font-size: 2.5rem;
             text-align: center;
             margin-bottom: 20px;
             text-transform: uppercase;
             letter-spacing: 2px;
-            color: #FFD700; /* Gold */
+            color: #FFD700;
             text-shadow: 2px 2px 10px rgba(255, 215, 0, 0.7);
         }
 
-        /* Label Form */
         .form-label {
             font-weight: bold;
             font-size: 1.1rem;
             color: #FFD700;
         }
 
-        /* Input dan Select */
         .form-control {
             background: rgba(255, 255, 255, 0.15);
             border: 2px solid rgba(255, 215, 0, 0.5);
@@ -75,7 +67,6 @@
             outline: none;
         }
 
-        /* Tombol */
         .btn {
             background: linear-gradient(135deg, #FFD700, #FFA500);
             color: #000;
@@ -94,78 +85,71 @@
             box-shadow: 0 10px 20px rgba(255, 165, 0, 0.6);
         }
 
-        /* Card (Kelompok) */
         .card {
-            background: rgb(255, 255, 255);
+            background: rgba(20, 116, 122, 0.9);
             border-radius: 15px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
-            transition : transform 0.3s ease;
-            padding: 15px;
+            overflow: hidden;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease-in-out;
         }
 
         .card:hover {
-            transform: translateY(-5px);
+            transform: scale(1.05);
         }
 
-        /* List Item - Nama Anggota Kelompok */
-        .list-group-item {
-            background: rgb(255, 255, 255);
-            border: 1px solid rgba(255, 215, 0, 0.3);
-            color: #FFD700; /* Emas */
-            font-weight: bold;
-            transition: background 0.3s ease, color 0.3s ease;
-        }
-
-        /* Efek Hover */
-        .list-group-item:hover {
-            background: rgba(255, 255, 255, 0.2);
-            color: #ffffff; /* Putih saat hover agar lebih terlihat */
-        }
-
-        /* Reset Info */
-        #resetInfo {
-            font-weight: bold;
-            font-size: 1.1rem;
-            text-align: center;
-            color: #FFA500;
-        }
-
-        /* Motivasi */
-        #motivationalQuote {
-            font-size: 1.2rem;
-            text-align: center;
-            margin-top: 20px;
-            font-style: italic;
-            font-weight: bold;
-            color: #FFD700;
-        }
-
-        /* Riwayat */
-        #history {
-            margin-top: 20px;
+        .card-title {
             color: #ffffff;
+            font-weight: bold;
+            font-size: clamp(1.2rem, 3vw, 1.5rem);
         }
 
-        /* Responsif */
-        @media (max-width: 768px) {
-            .container {
-                padding: 20px;
-            }
+        .list-group-item {
+            background: rgba(240, 240, 240, 0.9);
+            color: #2a5298;
+            font-weight: bold;
+            border: none;
+            padding: 10px 15px;
+            margin: 5px 0;
+            border-radius: 8px;
+        }
 
-            h1 {
-                font-size: 2rem;
-            }
+        footer {
+            margin-top: 20px; /* Adjusted margin for footer */
+            text-align: center;
+            color: #ffffff;
+            font-size: 0.9rem;
+        }
 
-            .btn {
-                padding: 10px 15px;
-            }
+        #resetInfo {
+            color: red;
+            font-weight: bold;
+        }
+
+        #waitMessage {
+            display: none; /* Initially hidden */
+            color: red;
+            font-weight: bold;
+        }
+
+        /* Additional styles for better aesthetics */
+        .student-checkbox {
+            margin-bottom: 10px;
+        }
+
+        .student-checkbox input {
+            margin-right: 10px;
+        }
+
+        .form-check {
+            margin-bottom: 15px;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>GroupSync INTECH 23 A </h1>
-        <i>TIDAK BOLEH BAGI ULANG & PENULISAN NAMA MATAKULIAH HARUS HURUF KAPITAL!!!!!!</i>
+        <h1>GROUP WORK DIVISION SYSTEM INTECH 23 A</h1>
+        <i>TIDAK BOLEH DI ULANGI DARI 1X!!!</i><br>
+        <i>PENULISAN MATAKULIAH HARUS HURUF KAPITAL SEMUA!!!</i>
         <form id="groupForm">
             <div class="mb-3">
                 <label for="subject" class="form-label">Nama Matakuliah</label>
@@ -174,31 +158,29 @@
             <div class="mb-3">
                 <label class="form-label">Pilih Mahasiswa</label><br>
                 <input type="checkbox" id="selectAll"> Pilih Semua
-                <div id="studentList"></div>
+                <div id="studentList" class="mt-2"></div>
             </div>
             <div class="mb-3">
                 <label for="groupCount" class="form-label">Jumlah Kelompok</label>
                 <input type="number" class="form-control" id="groupCount" name="groupCount" required>
             </div>
-            <button type="submit" class="btn">Bagi Kelompok</button>
+            <button type="submit" class="btn" id="submitBtn">Bagi Kelompok</button>
         </form>
-        <p id="resetInfo" style="color: red; font-weight: bold;"></p>
+        <p id="resetInfo"></p>
         <div id="result" class="mt-5">
             <h3>Hasil Pembagian Kelompok</h3>
-            <button id="downloadGuidePdf" class="btn mb-3" style="display: block;">Download Panduan Penggunaan Web</button>
             <button id="downloadPdf" class="btn mb-3" style="display: none;">Download PDF</button>
             <div id="groups"></div>
-            <p id="motivationalQuote" class="mt-3" style="font-weight: bold;">"Bersama Kita Bisa, Sukses Tidak Sendirian"</p>
+            <p id="waitMessage">Anda harus menunggu 15 jam sebelum membagi kelompok lagi.</p>
         </div>
-        <div id="history">
-            <h3>Riwayat Pembagian Kelompok</h3>
-            <div id="historyList"></div>
-        </div>
-    </div>
+    </div>  
+    <footer>
+        <p>&copy; 2025 Pembagian Kelompok Matakuliah INTECH 23 A</p>
+    </footer>    
     <script>
         const students = [
             { name: 'Maria Aplonia Usnaat', npm: '51230018' },
-            { name: 'Fransiskus Junarta Khan', npm: '51230001' },
+            { name: 'Fransiskus Juna Khan', npm: '51230001' },
             { name: 'Astriana Bria', npm: '51230017' },
             { name: 'Oktaviana Taimenas', npm: '51230030' },
             { name: 'Fridolinus Mali', npm: '51230094' },
@@ -228,9 +210,8 @@
             { name: 'Alexandro Mario Aser', npm: '51230035' }
         ];
 
-        const usedSubjects = JSON.parse(localStorage.getItem('usedSubjects')) || {};
-        const history = JSON.parse(localStorage.getItem('groupHistory')) || {};
-        const resetDuration = 15 * 60 * 60 * 1000; // 15 hours in milliseconds
+        let savedGroups = JSON.parse(localStorage.getItem('savedGroups')) || {};
+        const resetDuration = 10 * 60 * 60 * 1000; // 10 hours in milliseconds
 
         function shuffleArray(array) {
             for (let i = array.length - 1; i > 0; i--) {
@@ -240,78 +221,80 @@
         }
 
         function displayGroups(groups) {
-            const resultDiv = document.getElementById("groups");
-            resultDiv.innerHTML = "";
+            const resultDiv = $("#groups");
+            resultDiv.empty();
             groups.forEach((group, i) => {
                 const groupHtml = `
                     <div class="card mb-3">
                         <div class="card-body">
                             <h5 class="card-title">Kelompok ${i + 1}</h5>
-                            <div class="list-group">
-                                ${group.map(student => `${student.name} (${student.npm})`).join('<br>')}
-                            </div>
+                            <ul class="list-group">
+                                ${group.map(student => `<li class="list-group-item">${student.name} (${student.npm})</li>`).join('')}
+                            </ul>
                         </div>
                     </div>`;
-                resultDiv.innerHTML += groupHtml;
+                resultDiv.append(groupHtml);
             });
-            document.getElementById("downloadPdf").style.display = "block";
+            $("#downloadPdf").show();
+            $("#waitMessage").hide(); // Hide wait message when groups are displayed
         }
 
-        function checkResetTime(subject) {
-            const subjectTime = usedSubjects[subject];
-            if (subjectTime) {
-                const elapsedTime = Date.now() - subjectTime;
-                if (elapsedTime < resetDuration) {
-                    const remainingTime = resetDuration - elapsedTime;
-                    const hours = Math.floor((remainingTime / (1000 * 60 * 60)) % 24);
-                    const minutes = Math.floor((remainingTime / (1000 * 60)) % 60);
-                    document.getElementById("resetInfo").innerText = `Anda harus menunggu ${hours} jam ${minutes} menit sebelum membagi kelompok untuk matakuliah ini.`;
-                    return true;
+        function generatePDF() {
+            const { jsPDF } = window.jspdf;
+            const pdf = new jsPDF();
+            const subject = $("#subject").val();
+            pdf.setFontSize(16);
+            pdf.text(`Universitas Timor (Teknologi Informasi)`, 105, 20, { align: "center" });
+            pdf.text(`Hasil Pembagian Kelompok INTECH 23 A`, 105, 30, { align: "center" });
+            pdf.text(`Matakuliah: ${subject}`, 105, 40, { align: "center" });
+            pdf.setFontSize(12);
+            pdf.setFont("times", "italic");
+            pdf.text(`"Bersama Kita Bisa, Sukses Tidak Sendirian"`, 105, 50, { align: "center" });
+            pdf.setFont("helvetica", "normal");
+
+            let yOffset = 60;
+            const groups = $("#groups .card");
+            groups.each(function (index) {
+                pdf.setFontSize(14);
+                pdf.text(`Kelompok ${index + 1}`, 10, yOffset);
+                yOffset += 10;
+                $(this).find("li").each(function () {
+                    pdf.text($(this).text(), 15, yOffset);
+                    yOffset += 10;
+                });
+                yOffset += 5; // Spacing between groups
+
+                // Check if we need to add a new page
+                if (yOffset > pdf.internal.pageSize.height - 20) {
+                    pdf.addPage();
+                    yOffset = 20; // Reset yOffset for new page
                 }
-            }
-            return false;
+            });
+
+            pdf.save(`pembagian_kelompok_${subject}.pdf`);
         }
 
-        function renderHistory() {
-            const historyListDiv = document.getElementById("historyList");
-            historyListDiv.innerHTML = "";
-            for (const subject in history) {
-                const groups = history[subject];
-                const entryHtml = `
-                    <div class="card mb-2">
-                        <div class="card-body">
-                            <h5 class="card-title">${subject}</h5>
-                            <div class="list-group">
-                                ${Array.isArray(groups) ? groups.map((group, i) => `
-                                    <div><strong>Kelompok ${i + 1}:</strong> ${group.map(student => `${student.name} (${student.npm})`).join(', ')}</div>
-                                `).join('') : ''}
-                            </div>
-                        </div>
-                    </div>`;
-                historyListDiv.innerHTML += entryHtml;
-            }
-        }
-
-        document.getElementById("groupForm").addEventListener("submit", function(event) {
+        $("#groupForm").on("submit", function (event) {
             event.preventDefault();
-            const subject = document.getElementById ("subject").value.toUpperCase();
-            if (checkResetTime(subject)) return;
-
-            const groupCount = parseInt(document.getElementById("groupCount").value);
+            const subject = $("#subject").val().toUpperCase();
+            const groupCount = parseInt($("#groupCount").val());
             if (groupCount <= 0 || groupCount > students.length) {
                 alert("Jumlah kelompok tidak valid!");
                 return;
             }
+
             const selectedStudents = Array.from(document.querySelectorAll('.studentCheckbox:checked')).map(checkbox => {
                 return students.find(student => student.name === checkbox.value);
             }).filter(Boolean);
+
             if (selectedStudents.length === 0) {
                 alert("Silakan pilih setidaknya satu mahasiswa!");
                 return;
             }
 
-            if (history[subject]) {
-                alert("Kelompok untuk matakuliah ini sudah dibagi sebelumnya. Silakan tunggu 15 jam untuk membagi kembali.");
+            if (savedGroups[subject]) {
+                $("#waitMessage").show(); // Show wait message if groups already exist
+                alert("Kelompok sudah ada sebelumnya, tidak diacak ulang. Anda harus menunggu 15 jam sebelum membagi kelompok lagi.");
                 return;
             }
 
@@ -320,78 +303,47 @@
             selectedStudents.forEach((student, index) => {
                 groups[index % groupCount].push(student);
             });
+            savedGroups[subject] = groups;
+            localStorage.setItem('savedGroups', JSON.stringify(savedGroups));
             displayGroups(groups);
-            history[subject] = groups;
-            localStorage.setItem('groupHistory', JSON.stringify(history));
-            usedSubjects[subject] = Date.now();
-            localStorage.setItem('usedSubjects', JSON.stringify(usedSubjects));
-            renderHistory();
         });
+
+        $("#downloadPdf").on("click", generatePDF);
+
+        function updateResetTime() {
+            let resetTimestamp = localStorage.getItem("resetTimestamp");
+            const now = Date.now();
+
+            if (!resetTimestamp || now >= resetTimestamp) {
+                savedGroups = {};
+                localStorage.removeItem("savedGroups");
+                localStorage.setItem("resetTimestamp", now + resetDuration);
+                $("#groups").empty();
+                $("#downloadPdf").hide();
+                $("#waitMessage").show(); // Show wait message when reset occurs
+                alert("Pembagian kelompok telah direset otomatis setelah 10 jam.");
+            }
+        }
 
         function renderStudentList() {
             const studentListDiv = $('#studentList');
             studentListDiv.empty();
             students.forEach(student => {
                 studentListDiv.append(
-                    `<div><input type='checkbox' class='studentCheckbox' value='${student.name}'> ${student.name}</div>`
+                    `<div class="student-checkbox">
+                        <input type='checkbox' class='studentCheckbox' value='${student.name}'> ${student.name}
+                    </div>`
                 );
             });
         }
 
         $(document).ready(function() {
             renderStudentList();
-            renderHistory();
+            updateResetTime();
         });
 
         $('#selectAll').on('change', function() {
             $('.studentCheckbox').prop('checked', this.checked);
-        });
-
-        document.getElementById("downloadPdf").addEventListener("click", function() {
-            const { jsPDF } = window.jspdf;
-            const pdf = new jsPDF();
-            const subject = document.getElementById("subject").value.toUpperCase();
-            pdf.setFontSize(16);
-            pdf.text(`Universitas Timor (Teknologi Informasi)`, 105, 20, { align: "center" });
-            pdf.text(`Hasil Pembagian Kelompok INTECH 23 A`, 105, 30, { align: "center" });
-            pdf.text(`Matakuliah: ${subject}`, 105, 40 , { align: "center" });
-            pdf.setFontSize(12);
-            pdf.setFont("times", "italic");
-            pdf.text(`"Bersama Kita Bisa, Sukses Tidak Sendirian"`, 105, 50, { align: "center" });
-            pdf.setFont("helvetica", "normal");
-
-            let yOffset = 60;
-            const groups = document.querySelectorAll("#groups .card");
-            groups.forEach((group, index) => {
-                if (yOffset > 250) {
-                    pdf.addPage();
-                    yOffset = 10;
-                }
-                pdf.text(`Kelompok ${index + 1}`, 10, yOffset);
-                yOffset += 10;
-                const studentsInGroup = group.querySelectorAll("div.list-group");
-                studentsInGroup.forEach(student => {
-                    pdf.text(student.textContent, 15, yOffset);
-                    yOffset += 10;
-                });
-                yOffset += 5;
-            });
-
-            pdf.save(`pembagian_kelompok_${subject}.pdf`);
-        });
-
-        document.getElementById("downloadGuidePdf").addEventListener("click", function() {
-            const { jsPDF } = window.jspdf;
-            const pdf = new jsPDF();
-            pdf.setFontSize(16);
-            pdf.text("Panduan Penggunaan Web Pembagian Kelompok", 105, 20, { align: "center" });
-            pdf.setFontSize(12);
-            pdf.text("1. Masukkan nama matakuliah dengan huruf kapital.", 10, 40);
-            pdf.text("2. Pilih mahasiswa yang ingin dimasukkan ke dalam kelompok.", 10, 50);
-            pdf.text("3. Tentukan jumlah kelompok yang diinginkan.", 10, 60);
-            pdf.text("4. Klik 'Bagi Kelompok' untuk melihat hasil pembagian.", 10, 70);
-            pdf.text("5. Anda dapat mengunduh hasil pembagian kelompok dalam format PDF.", 10, 80);
-            pdf.save("Panduan_Penggunaan_Web.pdf");
         });
     </script>
 </body>
